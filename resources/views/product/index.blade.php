@@ -52,29 +52,25 @@
                             </div>
 
                             <!-- Bootstrap Delete Modal -->
-                            <div class="modal fade" id="deleteModal-{{ $product->id }}" tabindex="-1" aria-labelledby="deleteModalLabel-{{ $product->id }}" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel-{{ $product->id }}">Delete Product</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body text-center">
-                                            Are you sure you want to delete<br>
-                                            <strong>{{ $product->name }}</strong>?
-                                        </div>
-                                        <div class="modal-footer justify-content-center">
-                                            <form action="{{ route('products.destroy', $product) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input type="hidden" name="id" value="{{ $product->id }}">
-                                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
-                                            </form>
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        </div>
-                                    </div>
+                            <x-modal name="deleteModal-{{ $product->id }}" maxWidth="lg">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel-{{ $product->id }}">Delete Product</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                            </div>
+                                <div class="modal-body text-center">
+                                    Are you sure you want to delete<br>
+                                    <strong>{{ $product->name }}</strong>?
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <form action="{{ route('products.destroy', $product) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $product->id }}">
+                                        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                            </x-modal>
                         </div>
                     </div>
                 </div>
